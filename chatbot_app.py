@@ -12,8 +12,19 @@ from langchain.embeddings import SentenceTransformerEmbeddings
 from langchain.vectorstores import Chroma 
 from langchain.llms import HuggingFacePipeline
 from langchain.chains import RetrievalQA 
-from constants import CHROMA_SETTINGS
-from streamlit_chat import message
+# from pydantic_settings import BaseSettings
+# from constants import CHROMA_SETTINGS
+# from streamlit_chat import message
+
+
+# import os 
+import chromadb
+from chromadb.config import Settings 
+CHROMA_SETTINGS = Settings(
+        chroma_db_impl='duckdb+parquet',
+        persist_directory='db',
+        anonymized_telemetry=False
+)
 
 st.set_page_config(layout="wide")
 
@@ -116,14 +127,17 @@ def displayPDF(file):
 # Display conversation history using Streamlit messages
 def display_conversation(history):
     for i in range(len(history["generated"])):
-        message(history["past"][i], is_user=True, key=str(i) + "_user")
-        message(history["generated"][i],key=str(i))
+        # message(history["past"][i], is_user=True, key=str(i) + "_user")
+        # message(history["generated"][i],key=str(i))
+        st.write(history["past"][i])
+        st.write(history["generated"][i])
 
 def main():
-    st.markdown("<h1 style='text-align: center; color: blue;'>Chat with your PDF 🦜📄 </h1>", unsafe_allow_html=True)
-    st.markdown("<h3 style='text-align: center; color: grey;'>Built by <a href='https://github.com/AIAnytime'>AI Anytime with ❤️ </a></h3>", unsafe_allow_html=True)
+    # st.markdown("<h1 style='text-align: center; color: blue;'>Chat with your PDF 🦜📄 </h1>", unsafe_allow_html=True)
+    # st.markdown("<h3 style='text-align: center; color: grey;'>Built by <a href='https://github.com/AIAnytime'>AI Anytime with ❤️ </a></h3>", unsafe_allow_html=True)
 
-    st.markdown("<h2 style='text-align: center; color:red;'>Upload your PDF 👇</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center; color:white;'>Omdena: UAE chapter</h2>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center; color:white;'>LLM local deployment test</h3>", unsafe_allow_html=True)
 
     uploaded_file = st.file_uploader("", type=["pdf"])
 
