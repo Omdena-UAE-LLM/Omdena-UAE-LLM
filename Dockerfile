@@ -17,7 +17,7 @@ RUN pip install -r req_dl4.txt --default-timeout=100 future
 COPY . .
 
 # Expose the port that Streamlit will run on
-# EXPOSE 8080
+EXPOSE 8080
 
 # Command to run your Streamlit application
 CMD ["streamlit", "run", "chatbot_app.py"]
