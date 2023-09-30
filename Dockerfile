@@ -21,4 +21,5 @@ EXPOSE 8501
 
 # Command to run your Streamlit application
 # CMD ["streamlit", "run", "chatbot_app.py"]
-ENTRYPOINT ["streamlit", "run", "chatbot_app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+# ENTRYPOINT ["streamlit", "run", "chatbot_app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+CMD ["streamlit", "run", "chatbot_app.py"]
